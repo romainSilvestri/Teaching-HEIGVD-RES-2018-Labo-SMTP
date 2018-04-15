@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Group {
     ArrayList<Person> group = new ArrayList<Person>();
 
+    public Group(){}
+
     public Group(Person... people){
         for(Person p : people){
             group.add(p);
@@ -15,5 +17,9 @@ public class Group {
         for(Person p : people){
             group.add(p);
         }
+    }
+
+    public ArrayList<Person> getGroup(){
+        return group;
     }
 }

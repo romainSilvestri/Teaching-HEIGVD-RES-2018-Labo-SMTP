@@ -10,7 +10,4 @@ public class Person {
         return mail;
     }
 
-    public void setMail(String mail){
-        this.mail = mail;
-    }
 }

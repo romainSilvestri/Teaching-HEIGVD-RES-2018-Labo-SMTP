@@ -1,9 +1,7 @@
 package smtp;
 
-
 import model.Person;
 import model.Prank;
-
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -72,22 +70,35 @@ public class SMTPClient {
                 input.readLine();
 
                 StringBuilder data = new StringBuilder();
-                data.append("From: ").append(p.getSender());
+                data.append("From: ").append(p.getSender().getMail());
 
                 data.append("\n").append("To: ");
                 for(Person person : p.getVictims()){
-                    data.append(person.getMail()).append(", ");
+                    data.append(person.getMail());
+                    if(!person.equals(p.getVictims().get(p.getVictims().size()-1))){
+                        data.append(", ");
+                    }
                 }
 
                 data.append("\n").append("CC: ");
                 for(Person person : p.getWitnessesToCC()){
-                    data.append(person.getMail()).append(", ");
+                    data.append(person.getMail());
+                    if(!person.equals(p.getWitnessesToCC().get(p.getWitnessesToCC().size()-1))){
+                        data.append(", ");
+                    }
                 }
 
-                data.append(p.getMessage());
+                data.append("\n").append(p.getMessage()).append(".\n");
+                System.out.println(data.toString());
+                sentToServer(data.toString());
 
+                input.readLine();
+                socketClient.close();
+                input.close();
+                output.close();
             }
 
+            sentToServer("quit");
         } catch (IOException e) {
             e.printStackTrace();
         }

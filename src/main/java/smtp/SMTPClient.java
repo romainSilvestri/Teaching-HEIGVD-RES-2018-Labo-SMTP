@@ -51,7 +51,7 @@ public class SMTPClient {
             for(Prank p : pranks){
 
                 // Sender
-                sentToServer("MAIL FROM:" + p.getSender());
+                sentToServer("MAIL FROM:" + p.getSender().getMail());
                 input.readLine();
 
                 // Victims
@@ -72,7 +72,7 @@ public class SMTPClient {
                 StringBuilder data = new StringBuilder();
                 data.append("From: ").append(p.getSender().getMail());
 
-                data.append("\n").append("To: ");
+                data.append("\r\n").append("To: ");
                 for(Person person : p.getVictims()){
                     data.append(person.getMail());
                     if(!person.equals(p.getVictims().get(p.getVictims().size()-1))){
@@ -80,7 +80,7 @@ public class SMTPClient {
                     }
                 }
 
-                data.append("\n").append("CC: ");
+                data.append("\r\n").append("CC: ");
                 for(Person person : p.getWitnessesToCC()){
                     data.append(person.getMail());
                     if(!person.equals(p.getWitnessesToCC().get(p.getWitnessesToCC().size()-1))){
@@ -88,17 +88,16 @@ public class SMTPClient {
                     }
                 }
 
-                data.append("\n").append(p.getMessage()).append(".\n");
-                System.out.println(data.toString());
+                data.append("\r\n").append(p.getMessage()).append("\r\n.\r\n");
                 sentToServer(data.toString());
 
                 input.readLine();
-                socketClient.close();
-                input.close();
-                output.close();
             }
 
             sentToServer("quit");
+            socketClient.close();
+            input.close();
+            output.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

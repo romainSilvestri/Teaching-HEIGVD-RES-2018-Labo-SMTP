@@ -38,7 +38,7 @@ public class SMTPClient {
 
             input.readLine();
 
-            sentToServer("EHLO qch");
+            sentToServer(Protocol.CMD_HELLO);
 
             String response;
 
@@ -51,22 +51,22 @@ public class SMTPClient {
             for(Prank p : pranks){
 
                 // Sender
-                sentToServer("MAIL FROM:" + p.getSender().getMail());
+                sentToServer(Protocol.CMD_MAIL_FROM + p.getSender().getMail());
                 input.readLine();
 
                 // Victims
                 for(Person person : p.getVictims()){
-                    sentToServer("RCPT TO: " + person.getMail());
+                    sentToServer(Protocol.CMD_RCPT_TO + person.getMail());
                     input.readLine();
                 }
 
                 // Witnesses
                 for(Person person : p.getWitnessesToCC()){
-                    sentToServer("RCPT TO: " + person.getMail());
+                    sentToServer(Protocol.CMD_RCPT_TO + person.getMail());
                     input.readLine();
                 }
 
-                sentToServer("DATA");
+                sentToServer(Protocol.CMD_DATA);
                 input.readLine();
 
                 StringBuilder data = new StringBuilder();
@@ -88,13 +88,13 @@ public class SMTPClient {
                     }
                 }
 
-                data.append("\r\n").append(p.getMessage()).append("\r\n.\r\n");
+                data.append("\r\n").append(p.getMessage()).append(Protocol.CMD_END_DATA);
                 sentToServer(data.toString());
 
                 input.readLine();
             }
 
-            sentToServer("quit");
+            sentToServer(Protocol.CMD_QUIT);
             socketClient.close();
             input.close();
             output.close();

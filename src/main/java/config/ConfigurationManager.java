@@ -1,3 +1,11 @@
+/**
+ * File: ConfigurationManager.java
+ * Author: Romain Silvestri & Guillaume Blanco
+ *
+ * This file
+ */
+
+
 package config;
 
 import model.Person;

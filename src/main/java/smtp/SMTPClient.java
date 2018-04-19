@@ -1,3 +1,10 @@
+/**
+ * File: SMTPClient.java
+ * Author: Romain Silvestri & Guillaume Blanco
+ *
+ * This class
+ */
+
 package smtp;
 
 import model.Person;

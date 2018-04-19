@@ -1,3 +1,11 @@
+/**
+ * File: Group.java
+ * Author: Romain Silvestri & Guillaume Blanco
+ *
+ * This file
+ */
+
+
 package model;
 
 import java.util.ArrayList;

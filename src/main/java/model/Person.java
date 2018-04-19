@@ -1,3 +1,9 @@
+/**
+ * File: Person.java
+ * Author: Romain Silvestri & Guillaume Blanco
+ *
+ * This file
+ */
 package model;
 
 public class Person {

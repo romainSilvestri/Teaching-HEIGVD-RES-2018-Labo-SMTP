@@ -1,3 +1,11 @@
+/**
+ * File: Main.java
+ * Author: Romain Silvestri & Guillaume Blanco
+ *
+ * This file create a new client who start a connection with the smtp server and do the prank
+ */
+
+
 import config.ConfigurationManager;
 import model.PrankGenerator;
 import smtp.SMTPClient;

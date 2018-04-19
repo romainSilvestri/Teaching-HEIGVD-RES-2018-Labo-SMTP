@@ -1,3 +1,9 @@
+/**
+ * File: Protocol.java
+ * Author: Romain Silvestri & Guillaume Blanco
+ *
+ * This Class contains all the constant that the client use to speak with the server
+ */
 package smtp;
 
 public class Protocol {

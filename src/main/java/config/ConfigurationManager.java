@@ -81,6 +81,13 @@ public class ConfigurationManager implements IConfigurationManager {
         return smtpServerAdress;
     }
 
+
+    /**
+     *  This function recovers the information in the file config.properties and stock this information
+     *  It's call by the constructor
+     * @param filename
+     * @throws IOException
+     */
     private void getSMTPConf(String filename) throws IOException {
         Properties properties = new Properties();
         FileInputStream file = new FileInputStream(filename);

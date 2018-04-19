@@ -2,7 +2,7 @@
  * File: Group.java
  * Author: Romain Silvestri & Guillaume Blanco
  *
- * This file
+ * This class manage the different group of people
  */
 
 

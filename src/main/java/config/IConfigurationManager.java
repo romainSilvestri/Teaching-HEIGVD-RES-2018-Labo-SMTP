@@ -23,10 +23,6 @@ public interface IConfigurationManager {
      */
     ArrayList<Person> loadVictims(String filename) throws IOException;
 
-    /**
-     *
-     * @return The list of victims
-     */
     ArrayList<Person> getListVictims();
 
     /**
@@ -37,33 +33,13 @@ public interface IConfigurationManager {
      */
     ArrayList<String> loadMessages(String filename) throws IOException;
 
-    /**
-     *
-     * @return The list of messages
-     */
     ArrayList<String> getListMessages();
 
-    /**
-     *
-     * @return The list of witness
-     */
     ArrayList<Person> getwitnessesToCC();
 
-    /**
-     *
-     * @return The port use to speak with the server
-     */
     int getSmtpServerPort();
 
-    /**
-     *
-     * @return The number of groups
-     */
     int getNumberOfGroups();
 
-    /**
-     *
-     * @return The address use to speak with the server
-     */
     String getSmtpServerAdress();
 }

@@ -2,7 +2,7 @@
  * File: PrankGenerator.java
  * Author: Romain Silvestri & Guillaume Blanco
  *
- * This Class generates the prank that the client will send to the victims
+ * This class generates the prank that the client will send to the victims
  */
 
 package model;

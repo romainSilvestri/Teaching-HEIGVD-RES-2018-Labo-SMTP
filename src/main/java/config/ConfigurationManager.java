@@ -2,7 +2,7 @@
  * File: ConfigurationManager.java
  * Author: Romain Silvestri & Guillaume Blanco
  *
- * This file
+ * This class contains the implementation of the interface IConfigurationManager
  */
 
 

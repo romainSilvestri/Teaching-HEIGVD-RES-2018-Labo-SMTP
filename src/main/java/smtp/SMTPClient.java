@@ -2,7 +2,7 @@
  * File: SMTPClient.java
  * Author: Romain Silvestri & Guillaume Blanco
  *
- * This class
+ * This class contains the client who will communicate with the server and send the prank
  */
 
 package smtp;
@@ -31,6 +31,7 @@ public class SMTPClient {
         this.smtpServerPort = smtpServerPort;
         this.pranks = pranks;
     }
+
 
     public void sentToServer(String s){
         output.println(s);

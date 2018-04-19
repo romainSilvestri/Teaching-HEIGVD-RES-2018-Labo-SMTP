@@ -49,6 +49,9 @@ public class ConfigurationManager implements IConfigurationManager {
         BufferedReader in = new BufferedReader(new InputStreamReader(file));
         String line;
         StringBuilder stringBuilder = new StringBuilder();
+
+        // Read the content of the file and add the messages to the list.
+        // Each messages must be separated by ==.
         while ((line = in.readLine()) != null) {
             if (line.equals("==")) {
                 messages.add(stringBuilder.toString());
@@ -83,8 +86,8 @@ public class ConfigurationManager implements IConfigurationManager {
 
 
     /**
-     *  This function recovers the information in the file config.properties and stock this information
-     *  It's call by the constructor
+     *  This function recovers the information in the file config.properties and stock this information.
+     *  It's call by the constructor.
      * @param filename
      * @throws IOException
      */

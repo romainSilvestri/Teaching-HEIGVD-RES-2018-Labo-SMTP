@@ -2,7 +2,7 @@
  * File: Prank.java
  * Author: Romain Silvestri & Guillaume Blanco
  *
- * This class generates and manage the differents pranks who will be send to the victims
+ * The prank object contains all the informations required for the prank.
  */
 
 package model;

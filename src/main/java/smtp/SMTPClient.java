@@ -2,7 +2,9 @@
  * File: SMTPClient.java
  * Author: Romain Silvestri & Guillaume Blanco
  *
- * This class contains the client who will communicate with the server and send the prank
+ * This class contains the client who will communicate with the server and send the prank.
+ * Only one connection is opened with the server. The connection is dropped only when all the pranks have been sent.
+ *
  */
 
 package smtp;
@@ -33,6 +35,7 @@ public class SMTPClient {
     }
 
 
+    // Method used only to avoid redundance.
     public void sentToServer(String s){
         output.println(s);
         output.flush();

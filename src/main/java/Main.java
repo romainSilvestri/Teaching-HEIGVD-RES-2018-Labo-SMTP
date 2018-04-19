@@ -2,7 +2,7 @@
  * File: Main.java
  * Author: Romain Silvestri & Guillaume Blanco
  *
- * This file create a new client who start a connection with the smtp server and do the prank
+ * This file create a new client who start a connection with the smtp server and launch the prank campaign.
  */
 
 

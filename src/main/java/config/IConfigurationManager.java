@@ -2,8 +2,8 @@
  * File: IConfigurationManager.java
  * Author: Romain Silvestri & Guillaume Blanco
  *
- * This interface contains all the methode to load and manage informations about victims.
- * (All informations are in files in the folder config).
+ * This interface contains all the methode to load and manage informations about the pranks.
+ *
  */
 
 package config;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public interface IConfigurationManager {
 
     /**
-     * Load (in config/victims.utf8), generates and return a list of victims
+     * Load the content of filename, generates and return a list of victims
      * @param filename
      * @return The list of victims
      * @throws IOException
@@ -26,7 +26,7 @@ public interface IConfigurationManager {
     ArrayList<Person> getListVictims();
 
     /**
-     * Load (in config/victims.utf8), generates and return a list of message (who will be send to victims)
+     * Load the content of filename, generates and return a list of message (who will be send to victims)
      * @param filename
      * @return The list of messages
      * @throws IOException

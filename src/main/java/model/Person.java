@@ -2,7 +2,7 @@
  * File: Person.java
  * Author: Romain Silvestri & Guillaume Blanco
  *
- * This class create and manage the differents people ( victims and witness)
+ * This class create and manage the differents people (victims and witness).
  */
 package model;
 

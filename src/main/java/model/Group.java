@@ -10,6 +10,7 @@ package model;
 
 import java.util.ArrayList;
 
+
 public class Group {
     ArrayList<Person> group = new ArrayList<Person>();
 

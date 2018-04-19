@@ -1,64 +1,34 @@
-# Teaching-HEIGVD-RES-2018-Labo-SMTP
+# HEIG-RES-2018-Blanco-Silvestri-SMTP-PRANKS
 
-## Objectives
+**The project:**  
+The goal of this laboratory is the develop a client application allowing a user to send forged emails to chosen groups of people. The application is a Meaven project written in Java. The program configuration can be edited by the user.
 
-In this lab, you will develop a client application (TCP) in Java. This client application will use the Socket API to communicate with a SMTP server. The code that you write will include a **partial implementation of the SMTP protocol**. These are the objectives of the lab:
+**Mock server using docker:**
+* The docker directory at the root of the progam contain the dockerfile and the sources folder required by the docker. To build a docker image, simply write ``docker build -t containerName .``in a docker bash. By writing ``docker images``, you can see the build images on your computer. This allow to check if the building is successful.  
 
-* Make practical experiments to become familiar with the **SMTP protocol**. After the lab, you should be able to use a command line tool to **communicate with a SMTP server**. You should be able to send well-formed messages to the server, in order to send emails to the address of your choice.
+* To setup the docker container of the mockmock server, just write ``docker run -p 2525:2525 -p 8080:8080 containerName`` in a docker bash. The server will use the port 8080 for the HTTP and the 2525 for SMTP. If you need to change those ports, the dockerfile must be edited and the image rebuild.
 
-* Understand the notions of **test double** and **mock server**, which are useful when developing and testing a client-server application. During the lab, you will setup and use such a **mock server**.
+* You can go to the mail overview page by typing ``192.168.99.199:8080`` in your internet navigator. If the HTTP port has been changed, change the instruction above to match the new port.
 
-* Understand what it means to **implement the SMTP protocol** and be able to send e-mail messages, by working directly on top of the Socket API (i.e. you are not allowed to use a SMTP library).
+* To send messages to the server from the program, start a TCP connection from your client to the server using ``192.168.99.100`` as the server adress and ``2525`` as the server port.
 
-* **See how easy it is to send forged e-mails**, which appear to be sent by certain people but in reality are issued by malicious users.
+* If you want to launch the server without docker, just go in the /docker/src folder and launch the .jar file using the ``java -jar MockMock.jar -p 2525 -h 8080`` command.
 
-* **Design a simple object-oriented model** to implement the functional requirements described in the next paragraph.
+**Configuration:**
+* The configuration files of the program are in the ``config`` directory in the root folder of the project.
 
+* The ``config.properties`` file contains the configuration for the smtp protocol (SMTP server adress and port), the number of groups and the user to CC. Note: a group must contain at least 3 people. If there is not enough people for the amount of groups required, less groups will be generated.
 
+* The ``victims.utf8`` file contains the list of email adresses (one per line).
 
+* The ``messages.utf8`` file contains the messages that will be send. They are separated by ``==``. The first line of each message must be ``Subject: `` otherwise, the mail received by the victims won't have any.
 
-## Functional requirements
+**Implementation:**  
+Our program is separated in two parts: the SMTP client code and the pranks one.  
+For the pranks:
+* We have a JavaObject called PrankGenerator that have a method creating then returning a list of pranks.
+* Each pranks contain a sender, some victims and a message. Those informations are read from the config file using the ConfigurationManager Object.
 
-Your mission is to develop a client application that automatically plays pranks on a list of victims:
-
-* The user should be able to **define a list of victims** (concretely, you should be able to create a file containing a list of e-mail addresses).
-
-* The user should be able to **define how many groups of victims should be formed** in a given campaign. In every group of victims, there should be 1 sender and at least 2 recipients (i.e. the minimum size for a group is 3).
-
-* The user should be able to **define a list of e-mail messages**. When a prank is played on a group of victims, then one of these messages should be selected. **The mail should be sent to all group recipients, from the address of the group sender**. In other words, the recipient victims should be lead to believe that the sender victim has sent them.
-
-
-## Example
-
-Consider that your program generates a group G1. The group sender is Bob. The group recipients are Alice, Claire and Peter. When the prank is played on group G1, then your program should pick one of the fake messages. It should communicate with a SMTP server, so that Alice, Claire and Peter receive an e-mail, which appears to be sent by Bob.
-
-
-## Deliverables
-
-You will deliver the results of your lab in a GitHub repository. 
-
-Your repository should contain both the source code of your Java project and your report. Your report should be a single `README.md` file, located at the root of your repository. The images should be placed in a `figures` directory.
-
-Your report MUST include the following sections:
-
-* **A brief description of your project**: if people exploring GitHub find your repo, without a prior knowledge of the RES course, they should be able to understand what your repo is all about and whether they should look at it more closely.
-
-* **Instructions for setting up a mock SMTP server (with Docker)**. The user who wants to experiment with your tool but does not really want to send pranks immediately should be able to use a mock SMTP server. For people who are not familiar with this concept, explain it to them in simple terms. Explain which mock server you have used and how you have set it up.
-
-* **Clear and simple instructions for configuring your tool and running a prank campaign**. If you do a good job, an external user should be able to clone your repo, edit a couple of files and send a batch of e-mails in less than 10 minutes.
-
-In addition, your report SHOULD include (i.e. you will not have penalties if you don't provide the info, but if you want to add this project to your portfolio, it is worth doing it):
-
-* **A concise description of your implementation**: document the key aspects of your code. It is probably a good idea to start with a class diagram. Decide which classes you want to show (focus on the important ones) and describe their responsibilities in text. It is also certainly a good idea to include examples of dialogues between your client and a SMTP server (maybe you also want to include some screenshots here).
-
-      
-## Evaluation
-
-* See CyberLearn. Beware of the dates.
-
-
-
-
-
-
-
+For the SMTP Client:
+* We start a connection with the SMTP server then we send go through the protocol for each pranks in the list.
+* Once all the mails are sent, the client drop the connection with the server and exit the program.
